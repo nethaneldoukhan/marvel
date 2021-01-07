@@ -1,0 +1,18 @@
+.footer-section {
+    padding: 2rem;
+    background-color: #26235f;
+    text-align: center;
+}
+
+.footer-section,
+.footer-section a {
+    color: white;
+}
+
+.footer-section p {
+    margin: 0;
+}
+
+.footer-section a {
+    margin-left: 0.25rem;
+}

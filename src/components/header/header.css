@@ -1,0 +1,25 @@
+header {
+    background-color: #26235f;
+}
+
+.logo-site {
+    max-width: 10rem;
+}
+
+.navbar {
+    align-items: flex-end !important;
+}
+
+.navbar .is-active {
+    color: red !important;
+}
+
+@media (min-width: 992px) {
+
+    .nav-link {
+        font-size: 1.5rem;
+        padding-bottom: 0 !important;
+        margin: 0rem 2rem;
+    }
+
+}
