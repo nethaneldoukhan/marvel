@@ -34,7 +34,7 @@ class Favorites extends Component {
                 </h1>
                 
                 {list[0] ?
-                <Row lg={3} className="container-cards">
+                <Row lg={3} className="container-cards min-height-400">
                     <Cards list={list} />
                 </Row>
                 : <p className="folder-empty">THE FOLDER IS EMPTY</p>}
