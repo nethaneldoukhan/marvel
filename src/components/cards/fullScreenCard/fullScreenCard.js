@@ -9,22 +9,22 @@ import './fullScreenCard.css'
 function FullScreenCard({fullscreencard, onHide, show}) {
 
   const [favorites, setFavorites] = useState([])
-  const [inFavorites, setInFavorites] = useState()
+  // const [inFavorites, setInFavorites] = useState()
 
   useEffect(() => {
     const getFavorites = localStorage.getItem('marvel-favorites')
     if (getFavorites) {
       setFavorites(JSON.parse(getFavorites))
     }
-    checkInFavorites()
   }, [])
 
   const checkInFavorites = () => {
-    // const fff = favorites.filter((card) => {
-    //   return card.id === fullscreencard.id
-    // })
+    const fff = favorites.filter((card) => {
+      return card.id === fullscreencard.id
+    })
+    console.log(fff)
     console.log('hi')
-    return 'hi'
+    return fff
   }
 
   const handleCheckFavorite = (event) => {
@@ -73,11 +73,8 @@ function FullScreenCard({fullscreencard, onHide, show}) {
               type="switch"
               id="custom-switch"
               label="Save this comics to your favorites"
-              // defaultChecked={inFavorites}
+              defaultChecked={checkInFavorites}
               onChange={handleCheckFavorite}
-            />
-            <input type="text"
-              defaultValue={checkInFavorites}
             />
           </Form>
 
