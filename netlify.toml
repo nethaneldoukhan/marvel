@@ -5,7 +5,7 @@
   base = "/"
 
 [[redirects]]
-  from = "/*"
-  to = "/*"
+  from = "/cv"
+  to = "/cv"
   status = 200
   
