@@ -1,10 +1,11 @@
-[[redirects]]
-  from = "/favorites"
-  to = "/favorites"
-  status = 200
+[build]
+  command = "CI=false npm run build"
+  functions = "functions"
+  publish = "./build"
+  base = "./build"
 
 [[redirects]]
-  from = "/cv"
-  to = "/cv"
+  from = "/*"
+  to = "/*"
   status = 200
   
