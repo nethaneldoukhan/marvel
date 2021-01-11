@@ -9,3 +9,9 @@
   font-size: 40px;
   text-align: center;
 }
+
+.folder-empty {
+  padding: 180px 0px;
+  font-size: 20px;
+  text-align: center;
+}

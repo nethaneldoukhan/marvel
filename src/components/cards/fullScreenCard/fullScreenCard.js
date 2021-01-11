@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { Modal, Button, Card, Row, Col, Form, FormControl } from "react-bootstrap";
 
 import './fullScreenCard.css'
@@ -9,36 +9,42 @@ import './fullScreenCard.css'
 function FullScreenCard({fullscreencard, onHide, show}) {
 
   const [favorites, setFavorites] = useState([])
-  // const [inFavorites, setInFavorites] = useState()
+  const mySwitch = useRef()
 
   useEffect(() => {
     const getFavorites = localStorage.getItem('marvel-favorites')
     if (getFavorites) {
       setFavorites(JSON.parse(getFavorites))
+      console.log(mySwitch.current.checked)
     }
-  }, [])
+  }, []);
 
-  const checkInFavorites = () => {
-    const fff = favorites.filter((card) => {
+  function checkInFavorites() {
+    const inFav = favorites.filter((card) => {
       return card.id === fullscreencard.id
     })
-    console.log(fff)
-    console.log('hi')
-    return fff
+    if (inFav[0]) {
+      mySwitch.current.checked = true
+    }
   }
 
   const handleCheckFavorite = (event) => {
     console.log(event.target.checked)
+    let getFavorites = []
     if (event.target.checked) {
-      let getFavorites = favorites
+      getFavorites = favorites
       getFavorites.push(fullscreencard)
-      setFavorites(getFavorites)
-      localStorage.setItem('marvel-favorites', JSON.stringify(favorites))
+    } else {
+      getFavorites = favorites.filter((card) => {
+        return card.id !== fullscreencard.id
+      })
     }
-    console.log(favorites)
+    setFavorites(getFavorites)
+    localStorage.setItem('marvel-favorites', JSON.stringify(getFavorites))
+    console.log(getFavorites)
   }
 
-  console.log(favorites)
+  checkInFavorites()
 
   return (
     <Modal
@@ -70,10 +76,10 @@ function FullScreenCard({fullscreencard, onHide, show}) {
 
           <Form className="row form-save-favorites">
             <Form.Check 
+              ref={mySwitch}
               type="switch"
               id="custom-switch"
               label="Save this comics to your favorites"
-              defaultChecked={checkInFavorites}
               onChange={handleCheckFavorite}
             />
           </Form>
