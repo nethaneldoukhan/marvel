@@ -1,0 +1,9 @@
+.form-search {
+  margin: 50px auto;
+  max-width: 400px;
+}
+
+.form-search input {
+  width: 300px !important;
+}
+
