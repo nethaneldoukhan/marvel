@@ -21,6 +21,11 @@
   margin: 50px auto !important;
 }
 
+.container-cards li {
+  list-style: none;
+  display: inline-flex;
+}
+
 .container-cards .card {
   padding: 10px;
   width: 300px;

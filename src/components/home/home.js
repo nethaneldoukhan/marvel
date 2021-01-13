@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Row } from 'react-bootstrap'
-import { characterList } from '../../character'
+// import { characterList } from '../../character'
 import Search from './search/search'
 import Cards from '../cards/cards'
 import './home.css'
@@ -9,13 +9,17 @@ import './home.css'
 class Home extends Component {
 
     state = {
-        list: characterList,
+        list: [],
         loader: false
     }
 
     componentDidlMount() {
         document.title = 'Home page - Marvel'
         window.scrollTo(0, 0)
+    }
+
+    updateList = (results) => {
+        this.setState({list: results})
     }
 
 
@@ -29,11 +33,13 @@ class Home extends Component {
                         COMICS COLLECTION
                     </h1>
 
-                    <Search />
+                    <Search updateList={this.updateList} />
 
-                    <Row lg={3} className="container-cards">
-                        <Cards list={list} />
-                    </Row>
+                    <div className="container-cards">
+                        <Row as="ul" lg={3}>
+                            <Cards list={list} />
+                        </Row>
+                    </div>
                 </Container>
             </section>
         )

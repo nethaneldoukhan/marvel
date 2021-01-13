@@ -25,9 +25,9 @@ function Cards({list}) {
   
     return (
       <>
-        {list.map((item, index) => {
+        {list.map((item) => {
           return (
-            <Col key={item.id} onClick={() => openFullScreen(item)}>
+            <Col as="li" key={item.id} onClick={() => openFullScreen(item)}>
               <Card bg="light">
                 <Row>
                   <Col xs={3}>

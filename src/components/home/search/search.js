@@ -25,8 +25,9 @@ class Search extends Component {
         try {
             const response = await axios.get(configGet(this.state.inputSearch));
             console.log('👉 Returned data:', response);
+            this.props.updateList(response.data.data.results)
         } catch (e) {
-            console.log(`😱 Axios request failed: ${e}`);
+            console.log(`Marvel request failed: ${e}`);
         }
         this.setState({isLoader: false})
     }
