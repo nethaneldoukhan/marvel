@@ -28,6 +28,7 @@ class Search extends Component {
         } catch (e) {
             console.log(`😱 Axios request failed: ${e}`);
         }
+        this.setState({isLoader: false})
     }
 
     onChange = (e) => {
@@ -38,7 +39,7 @@ class Search extends Component {
 
 
     render() {
-        // const {list} = this.state
+        const {isLoader} = this.state
 
         return (
             <>
@@ -53,9 +54,10 @@ class Search extends Component {
                     <Button variant="light">Search</Button>
                 </Form>
 
+                {isLoader &&
                 <Spinner animation="border" role="status">
                     <span className="sr-only">Loading...</span>
-                </Spinner>
+                </Spinner>}
             </>
         )
     }
