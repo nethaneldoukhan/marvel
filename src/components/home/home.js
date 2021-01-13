@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Row } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 // import { characterList } from '../../character'
 import Search from './search/search'
 import Cards from '../cards/cards'
@@ -34,12 +34,7 @@ class Home extends Component {
                     </h1>
 
                     <Search updateList={this.updateList} />
-
-                    <div className="container-cards">
-                        <Row as="ul" lg={3}>
-                            <Cards list={list} />
-                        </Row>
-                    </div>
+                        <Cards list={list} />
                 </Container>
             </section>
         )

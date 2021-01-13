@@ -1,9 +1,9 @@
 import React, { Component, createRef } from 'react'
 import axios from 'axios'
-import { Button, Form, FormControl, Spinner } from 'react-bootstrap'
+import { Button, Form, FormControl } from 'react-bootstrap'
+import { Spinner } from 'react-spinners-css'
 import configGet from '../../../../src/config_api/config'
-// import { characterList } from '../../character'
-// import Cards from '../cards/cards'
+
 import './search.css'
 
 
@@ -24,7 +24,7 @@ class Search extends Component {
         console.log(configGet(this.state.inputSearch))
         try {
             const response = await axios.get(configGet(this.state.inputSearch));
-            console.log('👉 Returned data:', response);
+            console.log(response);
             this.props.updateList(response.data.data.results)
         } catch (e) {
             console.log(`Marvel request failed: ${e}`);
@@ -56,9 +56,10 @@ class Search extends Component {
                 </Form>
 
                 {isLoader &&
-                <Spinner animation="border" role="status">
+                <div className="text-center">
+                    <Spinner />
                     <span className="sr-only">Loading...</span>
-                </Spinner>}
+                </div>}
             </>
         )
     }

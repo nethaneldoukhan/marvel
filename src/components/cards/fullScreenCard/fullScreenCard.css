@@ -17,23 +17,6 @@
   width: 300px
 }
 
-.container-cards {
-  margin: 50px auto !important;
-}
-
-.container-cards .card {
-  padding: 10px;
-  width: 300px;
-  max-width: 100%;
-  height: 200px;
-  transition: transform 500ms;
-}
-
-.container-cards .card:hover {
-  cursor: pointer;
-  transform: scale(1.1,1.1);
-}
-
 .card .row {
   align-items: center;
 }

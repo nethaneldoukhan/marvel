@@ -30,13 +30,11 @@ class Favorites extends Component {
         <section className="favorites-section">
             <Container>
                 <h1 className="favorites-title">
-                FAVORITES
+                    FAVORITES
                 </h1>
                 
                 {list[0] ?
-                <Row lg={3} className="container-cards min-height-400">
                     <Cards list={list} />
-                </Row>
                 : <p className="folder-empty">THE FOLDER IS EMPTY</p>}
             </Container>
         </section>

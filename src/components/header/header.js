@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from "react"
 import { NavLink } from "react-router-dom"
 import { Container, Navbar, Nav } from 'react-bootstrap'
 import logo from '../../assets/images/MarvelLogo.png'
@@ -6,7 +6,24 @@ import logo from '../../assets/images/MarvelLogo.png'
 import './header.css'
 
   
-const Header = ({onClickButNav, onClickBody, isOpen}) => {
+const Header = () => {
+
+    const [isOpen, setOpen] = useState(false)
+
+    const onClickButNav = () => {
+        if (isOpen) {
+        setOpen(false)
+        } else {
+        setOpen(true)
+        }
+    }
+
+    const onClickBody = () => {
+        if (isOpen) {
+        setOpen(false)
+        }
+        console.log(isOpen)
+    }
   
     return (
         <header>

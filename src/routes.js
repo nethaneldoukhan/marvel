@@ -6,7 +6,7 @@ import Favorites from './components/favorites/favorites'
 import CV from './components/cv/cv'
 import NoMatch from './components/noMatch/noMatch'
 
-const Routes = (props) => {
+const Routes = () => {
     return (
         <Switch>
             <Route exact path='/' component={Home} />

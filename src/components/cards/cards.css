@@ -1,4 +1,4 @@
-.modal-body .row {
+/* .modal-body .row {
   align-items: center;
 }
 
@@ -15,10 +15,19 @@
 
 .modal-footer .form-inline input {
   width: 300px
-}
+} */
 
 .container-cards {
   margin: 50px auto !important;
+}
+
+.container-cards .col {
+  margin: 10px 0px;
+}
+
+.container-cards ul {
+  margin: 0px;
+  padding: 0px;
 }
 
 .container-cards li {
