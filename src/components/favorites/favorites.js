@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Row } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 
 import Cards from '../cards/cards'
 
@@ -14,9 +14,12 @@ class Favorites extends Component {
     componentDidMount() {
         document.title = 'Favorites - Marvel'
         window.scrollTo(0, 0)
-        const getFavorites = localStorage.getItem('marvel-favorites')
-        if (getFavorites) {
-            this.setState({list: JSON.parse(getFavorites)})
+        const marvelStorageJson = localStorage.getItem('marvel')
+        if (marvelStorageJson) {
+            const marvelStorage = JSON.parse(marvelStorageJson)
+            if(marvelStorage.favorites) {
+                this.setState({list: marvelStorage.favorites})
+            }
         }
     }
   

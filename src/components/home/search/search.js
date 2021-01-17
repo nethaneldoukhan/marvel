@@ -26,15 +26,13 @@ class Search extends Component {
             const response = await axios.get(configGet(this.state.inputSearch));
             console.log(response);
             this.props.updateList(response.data.data.results)
-        } catch (e) {
-            console.log(`Marvel request failed: ${e}`);
+        } catch (err) {
+            console.log(`Marvel request failed: ${err}`);
         }
         this.setState({isLoader: false})
     }
 
     onChange = (e) => {
-        console.log(this.state.inputSearch)
-        console.log(configGet(e.target.value))
         this.setState({inputSearch: e.target.value})
     }
 
@@ -52,12 +50,12 @@ class Search extends Component {
                         ref={this.inputSearch}
                         onChange={this.onChange}
                     />
-                    <Button variant="light">Search</Button>
+                    <Button type="submit" variant="light">Search</Button>
                 </Form>
 
                 {isLoader &&
                 <div className="text-center">
-                    <Spinner />
+                    <Spinner color="#26235f" />
                     <span className="sr-only">Loading...</span>
                 </div>}
             </>

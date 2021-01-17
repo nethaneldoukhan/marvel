@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
-import { Modal, Button, Card, Row, Col, Form, FormControl } from "react-bootstrap";
+import { Modal, Card, Row, Col, Form } from "react-bootstrap"
+
+import Comments from './comments/comments'
 
 import './fullScreenCard.css'
 
@@ -8,14 +10,18 @@ import './fullScreenCard.css'
 
 function FullScreenCard({fullscreencard, onHide, show}) {
 
+  const [marvelStorage, setMarvelStorage] = useState({})
   const [favorites, setFavorites] = useState([])
   const mySwitch = useRef()
 
   useEffect(() => {
-    const getFavorites = localStorage.getItem('marvel-favorites')
-    if (getFavorites) {
-      setFavorites(JSON.parse(getFavorites))
-      console.log(mySwitch.current.checked)
+    const marvelStorageJson = localStorage.getItem('marvel')
+    if (marvelStorageJson) {
+      const marvelStorage = JSON.parse(marvelStorageJson)
+      setMarvelStorage(marvelStorage)
+       if (marvelStorage.favorites) {
+        setFavorites(marvelStorage.favorites)
+        }
     }
   }, []);
 
@@ -40,8 +46,11 @@ function FullScreenCard({fullscreencard, onHide, show}) {
       })
     }
     setFavorites(getFavorites)
-    localStorage.setItem('marvel-favorites', JSON.stringify(getFavorites))
-    console.log(getFavorites)
+    let marvel = marvelStorage
+    marvel.favorites = getFavorites
+    setMarvelStorage(marvel)
+    localStorage.setItem('marvel', JSON.stringify(marvel))
+    console.log(marvel)
   }
 
   checkInFavorites()
@@ -89,14 +98,9 @@ function FullScreenCard({fullscreencard, onHide, show}) {
           </Card.Text>
       </div>
       </Modal.Body>
-      <Modal.Footer>
-        <Form inline>
-          <FormControl type="text" placeholder="Add comment" className="mr-sm-2" />
-          <Button variant="light">Save</Button>
-        </Form>
-      </Modal.Footer>
+      <Comments id={fullscreencard.id} marvelStorage={marvelStorage} />
     </Modal>
-  );
+  )
 }
 
   

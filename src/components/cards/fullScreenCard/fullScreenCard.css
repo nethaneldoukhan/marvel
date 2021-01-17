@@ -8,6 +8,10 @@
   font-weight: bold;
 }
 
+.modal-footer {
+  justify-content: space-between !important;
+}
+
 .modal-footer .form-inline {
   width: 100%;
   justify-content: space-between;
