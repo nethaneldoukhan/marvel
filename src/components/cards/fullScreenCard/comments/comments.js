@@ -10,32 +10,19 @@ class Comments extends Component {
         commentInput: createRef(),
     }
 
-    static getDerivedStateFromProps(props, state) {
-        // On stocke `prevId` dans l’état pour pouvoir la comparer quand les props changent.
-        // On efface aussi les données chargées précédemment (pour ne pas afficher des vieux trucs).
-        console.log(props)
-        if(state.comment.comment === '') {
+    checkComment(props) {
+        if(this.state.comment.comment === '') {
             if(props.marvelStorage.comments) {
                 const inComments = props.marvelStorage.comments.filter((item) => {
                     return item.id === props.id
                 })
                 console.log(inComments)
                 if (inComments[0]) {
-                    return {
-                        comment: inComments[0],
-                        isCommentText: true,
-                    }
+                    this.setState({comment: inComments[0], isCommentText: true})
                 }
             }
         }
-        // if (props.id !== state.prevId) {
-        //   return {
-        //     externalData: null,
-        //     prevId: props.id,
-        //   };
-        // }
-        // Pas de mise à jour d’état nécessaire.
-        return null;
+        return null
     }
 
     onChange = (e) => {
@@ -72,13 +59,10 @@ class Comments extends Component {
 
 
     render(){
-        console.log(this.state.commentInput)
-        console.log(this.props.marvelStorage.comments)
+        this.checkComment(this.props)
         const {comment, isCommentText} = this.state
-        console.log(comment)
         return (
             <Modal.Footer>
-                {/* {comment === null || comment.comment === '' ? */}
                 {!isCommentText ?
                     <Form inline onSubmit={this.onSubmit}>
                         <FormControl
