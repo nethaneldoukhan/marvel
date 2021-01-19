@@ -16,7 +16,6 @@ class Comments extends Component {
                 const inComments = props.marvelStorage.comments.filter((item) => {
                     return item.id === props.id
                 })
-                console.log(inComments)
                 if (inComments[0]) {
                     this.setState({comment: inComments[0], isCommentText: true})
                 }
@@ -26,12 +25,15 @@ class Comments extends Component {
     }
 
     onChange = (e) => {
-        console.log(e.target.value.length)
-        this.setState({commentInput: e.target.value})
+        const value = e.target.value.replace(/[0-9]/g, '');
+        this.setState({commentInput: value})
     }
 
     onSubmit = (e) => {
         e.preventDefault()
+        if (this.state.commentInput.current) {
+            return
+        }
         let getComments = this.props.marvelStorage.comments
         const commentObj = {id: this.props.id, comment: this.state.commentInput}
         if(getComments) {
@@ -43,34 +45,34 @@ class Comments extends Component {
         }
         if(commentObj.comment) {
             getComments.push(commentObj)
-            this.setState({isCommentText: true})
-            this.setState({comment: commentObj})
+            this.setState({isCommentText: true, comment: commentObj})
         }
         let marvel = this.props.marvelStorage
         marvel.comments = getComments
-        console.log(marvel)
-        localStorage.setItem('marvel', JSON.stringify(marvel))
+        if (!commentObj.current) {
+            localStorage.setItem('marvel', JSON.stringify(marvel))
+        }
     }
 
     onclick = () => {
-        console.log(this.state.comment.comment)
         this.setState({isCommentText: false, commentInput: this.state.comment.comment})
     }
 
 
     render(){
         this.checkComment(this.props)
-        const {comment, isCommentText} = this.state
+        const {comment, commentInput, isCommentText} = this.state
+        const commentInputValue = commentInput.current ? '' : commentInput
         return (
             <Modal.Footer>
                 {!isCommentText ?
                     <Form inline onSubmit={this.onSubmit}>
                         <FormControl
-                            ref={this.commentInput}
-                            defaultValue={comment.comment}
+                            ref={commentInput}
+                            value={commentInputValue}
                             onChange={this.onChange}
                             placeholder="Add comment"
-                            className="mr-sm-2"
+                            autoFocus
                         />
                         <Button type="submit" variant="light">Save</Button>
                     </Form>
