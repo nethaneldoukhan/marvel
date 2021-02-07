@@ -45,7 +45,7 @@ class Search extends Component {
                 <Form inline className="form-search" onSubmit={this.onSubmit}>
                     <FormControl
                         type="text"
-                        placeholder="Search"
+                        placeholder="Search (exemple: thor)"
                         className="mr-sm-2"
                         ref={this.inputSearch}
                         onChange={this.onChange}
